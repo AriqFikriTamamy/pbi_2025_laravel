@@ -27,3 +27,4 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
 
 // Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
+

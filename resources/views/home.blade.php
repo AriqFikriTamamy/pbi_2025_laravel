@@ -29,7 +29,11 @@
                     <li><a href="#faq">FAQ</a></li>
                 </ul>
                 <div class="auth-buttons-wrapper">
+<<<<<<< HEAD
                     <a href="{{ route('register') }}" class="btn btn-primary">
+=======
+                    <a href="./register.html" class="btn btn-primary">
+>>>>>>> f8d7248d581b7a8e1b25ee783cf000f2dad119b8
                         Register
                     </a>
                     <a href="./login.html" class="btn btn-secondary">
