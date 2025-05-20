@@ -18,7 +18,7 @@
         <div class="landing-page-container">
             <nav class="navbar">
                 <div class="hamburger-menu">&#9776;</div>
-                <a href="./" class="logo">
+                <a href="{{ route('home') }}" class="logo">
                     LOGO
                 </a>
                 <ul class="nav-list">
@@ -29,14 +29,11 @@
                     <li><a href="#faq">FAQ</a></li>
                 </ul>
                 <div class="auth-buttons-wrapper">
-<<<<<<< HEAD
+                    <!-- <a href="{{ route('register') }}" class="btn btn-primary"> -->
                     <a href="{{ route('register') }}" class="btn btn-primary">
-=======
-                    <a href="./register.html" class="btn btn-primary">
->>>>>>> f8d7248d581b7a8e1b25ee783cf000f2dad119b8
                         Register
                     </a>
-                    <a href="./login.html" class="btn btn-secondary">
+                    <a href="{{ route('login') }}" class="btn btn-secondary">
                         Login
                     </a>
                 </div>
@@ -56,7 +53,7 @@
                     <h2 class="hero-subtitle">
                         Simplify Your Job Search: AI Interviews & Effortless Application
                     </h2>
-                    <a href="./login.html" class="btn btn-primary cta-button">
+                    <a href="{{ asset('login') }}" class="btn btn-primary cta-button">
                         Get Started
                     </a>
                 </div>

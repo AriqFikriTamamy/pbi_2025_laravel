@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Application;
 
-class HomeController extends Controller
+class AddJobApplicationController extends Controller
 {
     public function index()
     {
-        return view(view: 'home');
+        return view('add-job-application');
     }
 }

@@ -150,6 +150,15 @@
   }
 }
 
+.btn-danger{
+  background-color: #DC2626;
+  color: #fff;
+
+  .icon {
+    stroke: #fff;
+  }
+}
+
 
 
 .text-center {text-align: center;}
