@@ -15,7 +15,7 @@
         <div class="left-panel">
 
 
-            <a href="./home.html" class="logo">⌘ LOGO</a>
+            <a href="{{ route('home') }}" class="logo">⌘ LOGO</a>
 
             <div class="left-panel-content">
                 <img src="{{ asset('build/assets/images/register-img.png') }}" alt="Illustration" class="illustration">
@@ -32,7 +32,7 @@
         <div class="right-panel">
             <div>
                 <div class="register-link">
-                    <a href="./login.html">Login</a>
+                    <a href="{{ route('login') }}">Login</a>
                 </div>
                 <div class="login-form">
                     <img src="{{ asset('build/assets/images/register-img.png') }}" alt="Illustration"
@@ -47,7 +47,7 @@
                         <input class="placeholder" type="password" placeholder="password" name="password" required>
                         <input class="placeholder" type="password" placeholder="confirm password"
                             name="confirm-password" required>
-                        <button type="submit" class="btn-login" onclick="register()">Register</button>
+                        <button type="submit" class="btn-login">Register</button>
                     </form>
                     <!-- <p class="or">OR CONTINUE WITH</p>
                     <button class="btn-github"><i class="fab fa-github"></i> Github</button> -->
@@ -62,11 +62,6 @@
 
         </div>
     </div>
-    <script>
-        function register() {
-            window.location.href = "{{ route('dashboard.index') }}"
-        }
-    </script>
 </body>
 
 </html>

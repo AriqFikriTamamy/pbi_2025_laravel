@@ -13,9 +13,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/add-job-application.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-    <title>My Applications</title>
+    <!-- Uncomment this to use the components CSS -->
+    <!-- <link rel="stylesheet" href="./assets/css/components.css"> -->
+    <title>Application Details</title>
 </head>
 
 <body>
@@ -23,7 +25,7 @@
         <aside class="sidebar" id="sidebar">
             <!-- Logo Section -->
             <section class="logo-section">
-                <a href="{{ asset('home') }}" class="logo">LOGO</a>
+                <a href="./home.html" class="logo">LOGO</a>
             </section>
 
             <!-- Apps Menu Section -->
@@ -31,7 +33,7 @@
                 <h3>Apps</h3>
                 <ul class="menu-list">
                     <li>
-                        <a href="{{ asset('dashboard') }}" class="menu-item menu-item-active">
+                        <a href="{{ route('dashboard') }}" class="menu-item menu-item-active">
                             <i class="icon" data-lucide="briefcase-business"></i>
                             <span>
                                 My Applications
@@ -104,120 +106,102 @@
             </button>
         </aside>
 
+        <!-- Konten Utama -->
         <main class="content-container">
             <div class="navbar">
                 <div class="actions-wrapper left-actions">
                     <button id="sidebar-trigger" href="#" class="action">
                         <i class="icon" data-lucide="panel-right-close"></i>
                     </button>
+                    <!-- Write some code here to add additional left icon actions -->
                 </div>
-                <h1 class="page-title">My Applications</h1>
+                <h1 class="page-title">Add Application</h1>
 
                 <div class="actions-wrapper right-actions">
-                    <a href="{{ asset('add-job-application') }}" class="action">
-                        <i class="icon" data-lucide="plus"></i>
-                    </a>
+                    <!-- Write some code here to add additional right icon actions -->
+                    <!-- <a href="#" class="action">
+                <i class="icon" data-lucide="plus"></i>
+              </a> -->
                 </div>
             </div>
-
-            <div class="content">
-                <div id="scorecard-statistics-wrapper">
-                    <div class="scorecard">
-                        <div class="scorecard-header">
-                            <p class="text-listed">Listed</p>
-                            <span class="emoji">💾</span>
-                        </div>
-                        <p class="score">43</p>
-                        <p class="desc">job applications</p>
-                    </div>
-
-                    <div class="scorecard">
-                        <div class="scorecard-header">
-                            <p class="text-applied">Applied</p>
-                            <span class="emoji">✈</span>
-                        </div>
-                        <p class="score">43</p>
-                        <p class="desc">job applications</p>
-                    </div>
-
-                    <div class="scorecard">
-                        <div class="scorecard-header">
-                            <p class="text-interview">Interview</p>
-                            <span class="emoji">🗣</span>
-                        </div>
-                        <p class="score"">43</p>
-            <p class=" desc">job applications</p>
-                    </div>
-
-                    <div class="scorecard">
-                        <div class="scorecard-header">
-                            <p class="text-accepted">Accepted</p>
-                            <span class="emoji">🤝</span>
-                        </div>
-                        <p class="score"">43</p>
-            <p class=" desc">job applications</p>
-                    </div>
-
-                    <div class="scorecard">
-                        <div class="scorecard-header">
-                            <p class="text-rejected">Rejected</p>
-                            <span class="emoji">😭</span>
-                        </div>
-                        <p class="score"">43</p>
-            <p class=" desc">job applications</p>
-                    </div>
+            <div class="content-panel">
+                <div class="addJob-illustration">
+                    <img src="{{ asset('build/assets/images/addJob-illustration.png') }}" alt="" class="illustration">
+                    <h1 class="illustration-text">Let's <span style="color: 16A249">track</span> it!</h1>
                 </div>
 
-                <form id="application-table-container">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th class="text-center" style="min-width: 40px;">ID</th>
-                                <th class="text-left" style="min-width: 180px;">Company</th>
-                                <th class="text-left" style="min-width: 230px;">Job Title</th>
-                                <th class="text-left" style="min-width: 100px;">Status</th>
-                                <th class="text-left" style="min-width: 100px;">Tracked Since</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="application-table-body">
-                            @isset($applications)
-                                @foreach ($applications as $application)
-                                    <tr>
-                                        <td class="text-center">{{ $application->id }}</td>
-                                        <td>{{ $application->company }}</td>
-                                        <td>{{ $application->job_title }}</td>
-                                        <td>{{ $application->status }}</td>
-                                        <td>{{ $application->tracked_since }}</td>
-                                        <td>
-                                            <button class="btn btn-primary"
-                                                onclick="editApplication{{ $application->id }}">Edit</button>
-                                            <button class="btn btn-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @endisset
-                        </tbody>
-                    </table>
-                </form>
+
+                <div class="addJob-form">
+                    <form method="POST" action="{{ route('applications.store')}}" id="application-form"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-grid">
+                            <div class="form-group job-title">
+                                <label for="job-title">Job Title <span style="color: red;">*</span></label>
+                                <input type="text" id="job_title" name="job_title" placeholder="Job Title" required>
+                            </div>
+                            <div class="form-group company-name">
+                                <label for="company-name">Company <span style="color: red;">*</span></label>
+                                <input type="text" id="company-name" name="company" placeholder="Company Name" required>
+                            </div>
+                            <div class="form-group current-status">
+                                <label for="current-status">Current Status</label>
+                                <select id="current-status" name="status">
+                                    <option value="select">Select</option>
+                                    <option value="applied">Applied</option>
+                                    <option value="interview">Interview</option>
+                                    <option value="accepted">Accepted</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+                            </div>
+                            <div class="form-group job-vacancy-link">
+                                <label for="job-vacancy-link">Job Vacancy Link</label>
+                                <input type="url" id="job-vacancy-link" name="job_link"
+                                    placeholder="https://www.job-example.com/">
+                            </div>
+                        </div>
+                        <div class="form-grid-2">
+                            <div class="form-group resume">
+                                <label for="resume">Resume (pdf.)</label>
+                                <input type="file" id="resume" name="resume" accept=".pdf">
+                            </div>
+                            <div class="form-group job-description">
+                                <label for="job-description">Job Description</label>
+                                <textarea id="job-description" name="job_description"
+                                    placeholder="Please include all information relevant to job description."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn">Cancel</button>
+                            <button type="submit" class="proceed-btn">Proceed Tracking</button>
+                        </div>
+                    </form>
+                </div>
+
+
+
             </div>
+
         </main>
+
+
     </div>
 
     <div id="sidebar-overlay"></div>
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Momentjs -->
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.30.1/moment.min.js"></script>
-
     <script>
         lucide.createIcons();
     </script>
-    <script src="{{ asset('build/assets/sidebar.js') }}"></script>
-
-
+    <script>
+        function toggleDropdown() {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+    <script src="/assets/js/sidebar.js"></script>
 </body>
 
 </html>
